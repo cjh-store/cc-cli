@@ -1,6 +1,6 @@
 {
   "name": "@cjh0/cc-cli",
-  "version": "2.12.0",
+  "version": "2.13.0",
   "description": "Claude Code配置管理CLI工具",
   "main": "src/index.js",
   "type": "module",

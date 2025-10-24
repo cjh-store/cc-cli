@@ -1,3 +1,9 @@
+## [2.13.0](https://github.com/cjh-store/cc-cli/compare/v2.12.0...v2.13.0) (2025-10-24)
+
+### ✨ Features
+
+* **项目:** 支持写入自定义字段到配置中 ([f814ec8](https://github.com/cjh-store/cc-cli/commit/f814ec8b593629e526205f83f63ffd18fc94af61))
+
 ## [2.12.0](https://github.com/cjh-store/cc-cli/compare/v2.11.0...v2.12.0) (2025-10-19)
 
 ### ✨ Features

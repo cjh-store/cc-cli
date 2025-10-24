@@ -284,10 +284,20 @@ class ConfigManager {
 
       // 需要删除重置的配置项
       if (currentSettings.env) {
+        // 清理认证相关字段
         delete currentSettings.env.ANTHROPIC_AUTH_TOKEN;
         delete currentSettings.env.ANTHROPIC_AUTH_KEY;
         delete currentSettings.env.ANTHROPIC_API_KEY;
         delete currentSettings.env.ANTHROPIC_MODEL;
+
+        // 清理 URL 配置（避免 ANTHROPIC_BASE_URL 和 ANTHROPIC_VERTEX_BASE_URL 冲突）
+        delete currentSettings.env.ANTHROPIC_BASE_URL;
+        delete currentSettings.env.ANTHROPIC_VERTEX_BASE_URL;
+        delete currentSettings.env.ANTHROPIC_VERTEX_PROJECT_ID;
+
+        // 清理 Vertex AI 相关配置
+        delete currentSettings.env.CLAUDE_CODE_USE_VERTEX;
+        delete currentSettings.env.CLAUDE_CODE_SKIP_VERTEX_AUTH;
       }
       // 重置模型配置
       delete currentSettings.model;
@@ -339,15 +349,31 @@ class ConfigManager {
         return false; // 没有claude或config字段
       }
 
-      if (
-        !actualConfig.env ||
-        !actualConfig.env.ANTHROPIC_BASE_URL ||
-        !actualConfig.env.ANTHROPIC_AUTH_TOKEN
-      ) {
+      // 检查必需的env配置
+      if (!actualConfig.env || !actualConfig.env.ANTHROPIC_AUTH_TOKEN) {
         return false;
       }
 
-      if (typeof actualConfig.env.ANTHROPIC_BASE_URL !== "string") {
+      const hasBaseUrl = actualConfig.env.ANTHROPIC_BASE_URL;
+      const hasVertexBaseUrl = actualConfig.env.ANTHROPIC_VERTEX_BASE_URL;
+
+      // BASE_URL和VERTEX_BASE_URL互斥,不能同时存在
+      if (hasBaseUrl && hasVertexBaseUrl) {
+        return false;
+      }
+
+      // 必须至少有一个URL配置
+      if (!hasBaseUrl && !hasVertexBaseUrl) {
+        return false;
+      }
+
+      // 验证BASE_URL类型
+      if (hasBaseUrl && typeof actualConfig.env.ANTHROPIC_BASE_URL !== "string") {
+        return false;
+      }
+
+      // 验证VERTEX_BASE_URL类型
+      if (hasVertexBaseUrl && typeof actualConfig.env.ANTHROPIC_VERTEX_BASE_URL !== "string") {
         return false;
       }
 

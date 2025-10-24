@@ -414,6 +414,14 @@ class CodexSwitchCommand {
     const requires_openai_auth = providerConfig.requires_openai_auth || true
     newConfig.push(`requires_openai_auth = ${requires_openai_auth}`)
 
+    // 写入其他自定义字段
+    const handledFields = ['name', 'base_url', 'wire_api', 'requires_openai_auth'];
+    Object.entries(providerConfig).forEach(([key, value]) => {
+      if (!handledFields.includes(key) && ['string', 'number', 'boolean'].includes(typeof value)) {
+        newConfig.push(`${key} = ${typeof value === 'string' ? `"${value}"` : value}`);
+      }
+    });
+
     // 6. 添加其他section配置
     if (sectionConfigs.length > 0) {
       newConfig.push(''); // 空行分隔

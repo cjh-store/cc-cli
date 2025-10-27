@@ -125,7 +125,6 @@ dist
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
-# yarn v3
 .pnp.*
 .yarn/*
 !.yarn/patches

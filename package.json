@@ -44,6 +44,7 @@
     "figlet": "^1.5.2",
     "fs-extra": "^11.1.0",
     "inquirer": "^8.2.0",
+    "node-notifier": "^10.0.1",
     "ora": "^5.4.1",
     "update-notifier": "^7.3.1",
     "webdav": "^5.3.1"

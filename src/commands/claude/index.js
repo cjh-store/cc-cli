@@ -8,6 +8,7 @@ import editCommand from './edit.js';
 import deleteCommand from './delete.js';
 import { showApiMenu, waitForBackConfirm } from '../../utils/ui.js';
 import yoloManager from '../../utils/yolo.js';
+import notificationManager from '../../utils/notification-manager.js';
 
 /**
  * API命令模块
@@ -144,7 +145,10 @@ class ApiCommand {
         // 检查当前YOLO模式状态
         const yoloStatus = await yoloManager.checkYoloModeStatus();
 
-        const choice = await showApiMenu({ yoloStatus });
+        // 检查当前通知状态
+        const notificationStatus = await notificationManager.checkNotificationStatus();
+
+        const choice = await showApiMenu({ yoloStatus, notificationStatus });
 
         if (choice === 'back') {
           return; // 返回主菜单
@@ -165,6 +169,9 @@ class ApiCommand {
             break;
           case 'delete':
             await this.subCommands.delete.execute([]);
+            break;
+          case 'notification':
+            await notificationManager.toggleNotificationMode();
             break;
           case 'yolo':
             await yoloManager.toggleYoloMode();

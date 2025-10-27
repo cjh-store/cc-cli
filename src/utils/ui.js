@@ -184,6 +184,14 @@ async function showApiMenu(options = {}) {
   console.log(chalk.cyan.bold("\n📡 Claude配置管理"));
   console.log(chalk.gray("═".repeat(40)));
 
+  // 构建通知管理菜单项
+  const notificationActionText = options.notificationStatus
+    ? "🔕 关闭通知 - 禁用系统通知"
+    : "🔔 开启通知 - 启用系统通知";
+  const notificationStatusText = options.notificationStatus
+    ? chalk.green("[已开启]")
+    : chalk.gray("[已关闭]");
+
   // 构建YOLO模式菜单项
   const yoloActionText = options.yoloStatus
     ? "🛑 关闭YOLO模式 - 禁用最宽松配置模式"
@@ -217,6 +225,11 @@ async function showApiMenu(options = {}) {
       name: "🗑️  删除配置 - 删除API配置",
       value: "delete",
       short: "删除配置",
+    },
+    {
+      name: `${notificationActionText} ${notificationStatusText} ${chalk.yellow("[NEW]")}`,
+      value: "notification",
+      short: "通知管理",
     },
     {
       name: `${yoloActionText} ${yoloStatusText}`,

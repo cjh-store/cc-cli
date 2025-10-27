@@ -67,6 +67,15 @@ class CommandRegistry {
           await claudeYoloCommand.execute();
         });
 
+      // 注册通知Hook命令（供Claude Code hooks内部调用）
+      const { default: notifyHookCommand } = await import('./notify-hook.js');
+      program
+        .command('notify-hook [type]')
+        .description('Claude Code 通知钩子处理器（内部使用）')
+        .action(async (type) => {
+          await notifyHookCommand.execute(type);
+        });
+
       // 注册帮助命令
       program
         .command('help')

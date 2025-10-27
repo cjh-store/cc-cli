@@ -10,7 +10,7 @@
 
 ## 📸 界面预览
 
-![配置切换界面](https://qm-cloud.oss-cn-chengdu.aliyuncs.com/test/otherType/PixPin_2025-09-30_08-42-40.png)
+![配置切换界面](https://qm-cloud.oss-cn-chengdu.aliyuncs.com/test/otherType/github/image.png)
 
 ## 📑 目录
 
@@ -27,6 +27,7 @@
 - ⚙️ **完整支持** - 支持所有 Claude Code 配置项
 - 💻 **Codex 支持** - 管理 Claude Code Codex 配置（仅支持 Claude 模型），支持开启/关闭 YOLO 模式
 - 🚀 **YOLO 模式** - 为 Claude Code API 和 Codex 提供最宽松配置模式，无条件批准所有工具使用请求
+- 🔔 **智能通知** - Claude Code 响应完成、工具批准等事件时自动推送系统通知，避免长时间等待
 - ☁️ **WebDAV 备份** - 支持配置文件云端备份与恢复（坚果云、其他标准 WebDAV 等）
   - **CC-CLI 配置备份** - 📁.cc-cli 下 api_config.json 等等
   - **Claude Code 配置备份** - 📄 settings.json 📄 CLAUDE.md 📁 agents/ 📁 commands/

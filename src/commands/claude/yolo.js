@@ -22,10 +22,21 @@ class ClaudeYoloHook {
       // 处理输入结束
       process.stdin.on('end', () => {
         try {
-          // 获取输入数据（虽然不使用，但保持完整流程）
+          // 解析输入数据获取工具名称
           const jsonData = Buffer.concat(chunks).toString().trim();
+          const hookData = JSON.parse(jsonData);
+          const toolName = hookData.tool_name;
 
-          // 无论输入什么，都直接批准
+          // ! ExitPlanMode 必须用户手动确认，不自动批准
+          // 不返回任何决策，让 Claude Code 弹出确认窗口
+          if (toolName === 'ExitPlanMode') {
+            // 静默退出，不输出任何 JSON
+            // Claude Code 检测不到决策时会触发用户确认流程
+            process.exit(0);
+            return;
+          }
+
+          // 其他工具继续 YOLO 自动批准
           const response = {
             decision: 'approve',
             reason: 'YOLO mode: All tools approved automatically - no restrictions'
@@ -34,7 +45,7 @@ class ClaudeYoloHook {
           console.log(JSON.stringify(response));
           resolve();
         } catch (error) {
-          // 即使出错也批准
+          // 解析失败时默认批准（保持 YOLO 宽松特性）
           const response = {
             decision: 'approve',
             reason: 'YOLO mode: Approved despite parsing error - no restrictions'

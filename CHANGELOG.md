@@ -1,3 +1,21 @@
+## [2.13.0](https://github.com/cjh-store/cc-cli/compare/v2.12.0...v2.13.0) (2025-10-24)
+
+### ✨ Features
+
+* **项目:** 支持写入自定义字段到配置中 ([f814ec8](https://github.com/cjh-store/cc-cli/commit/f814ec8b593629e526205f83f63ffd18fc94af61))
+
+## [2.12.0](https://github.com/cjh-store/cc-cli/compare/v2.11.0...v2.12.0) (2025-10-19)
+
+### ✨ Features
+
+* **项目:** 新增清除第三方服务提供商配置的功能方法 ([003b0c4](https://github.com/cjh-store/cc-cli/commit/003b0c428b916c45babaa63d8ce6e43be06bd89c))
+
+## [2.11.0](https://github.com/cjh-store/cc-cli/compare/v2.10.0...v2.11.0) (2025-10-17)
+
+### ✨ Features
+
+* **codex:** 新增官方OAuth认证模式切换功能 ([ee39230](https://github.com/cjh-store/cc-cli/commit/ee392307a38f99f375d59d29494a9ee6c1c0d390))
+
 ## [2.10.0](https://github.com/cjh-store/cc-cli/compare/v2.9.0...v2.10.0) (2025-10-16)
 
 ### ✨ Features

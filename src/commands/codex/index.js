@@ -208,6 +208,52 @@ class CodexCommand {
   }
 
   /**
+   * 清除第三方服务提供商配置
+   * @param {string} tomlContent TOML配置内容
+   * @returns {string} 清理后的配置内容
+   */
+  removeThirdPartyProviders(tomlContent) {
+    const lines = tomlContent.split('\n');
+    const cleanedLines = [];
+    let inModelProvidersSection = false;
+
+    for (const line of lines) {
+      const trimmed = line.trim();
+
+      // 跳过 model_provider = "xxx" 行
+      if (trimmed.startsWith('model_provider =')) {
+        continue;
+      }
+
+      // 检测进入 [model_providers.*] section
+      if (trimmed.startsWith('[model_providers')) {
+        inModelProvidersSection = true;
+        continue;
+      }
+
+      // 检测进入其他 section（退出 model_providers section）
+      if (trimmed.startsWith('[') && !trimmed.startsWith('[model_providers')) {
+        inModelProvidersSection = false;
+      }
+
+      // 在 model_providers section 内，跳过所有行
+      if (inModelProvidersSection) {
+        continue;
+      }
+
+      // 保留其他行
+      cleanedLines.push(line);
+    }
+
+    // 移除末尾多余的空行
+    while (cleanedLines.length > 0 && cleanedLines[cleanedLines.length - 1].trim() === '') {
+      cleanedLines.pop();
+    }
+
+    return cleanedLines.join('\n').trim() + '\n';
+  }
+
+  /**
    * 使用官方认证模式（将 OPENAI_API_KEY 设置为 null）
    */
   async useOfficialAuth() {
@@ -245,14 +291,34 @@ class CodexCommand {
       // 写入配置文件
       await fs.writeFile(codexAuthFile, JSON.stringify(authConfig, null, 2), 'utf8');
 
-      console.log(chalk.green('✅ 已切换到官方认证模式！'));
-      console.log(chalk.blue('ℹ️  OPENAI_API_KEY 已设置为 null'));
+      // 清理 config.toml 中的第三方服务提供商配置
+      const codexConfigFile = path.join(codexConfigDir, 'config.toml');
+      let configCleanedSuccess = false;
+
+      if (await fs.pathExists(codexConfigFile)) {
+        try {
+          const existingTomlConfig = await fs.readFile(codexConfigFile, 'utf8');
+          const cleanedConfig = this.removeThirdPartyProviders(existingTomlConfig);
+          await fs.writeFile(codexConfigFile, cleanedConfig, 'utf8');
+          configCleanedSuccess = true;
+          console.log(chalk.gray('✓ 已清理 config.toml 中的第三方服务提供商配置'));
+        } catch (error) {
+          console.log(chalk.yellow(`⚠️  清理 config.toml 失败: ${error.message}`));
+        }
+      }
+
+      console.log(chalk.green('\n✅ 已切换到官方OAuth认证模式！'));
+      console.log(chalk.blue('ℹ️  配置变更：'));
+      console.log(chalk.gray('  - auth.json: OPENAI_API_KEY → null'));
+      if (configCleanedSuccess) {
+        console.log(chalk.gray('  - config.toml: 已清除第三方服务提供商配置'));
+      }
 
       // 如果存在 tokens 字段，提示用户
       if (authConfig.tokens) {
-        console.log(chalk.cyan('ℹ️  将使用 OAuth tokens 进行认证'));
+        console.log(chalk.cyan('ℹ️  将使用 Anthropic 官方 OAuth tokens 进行认证'));
       } else {
-        console.log(chalk.yellow('⚠️  注意：未检测到 OAuth tokens，请确保已完成官方登录'));
+        console.log(chalk.yellow('⚠️  未检测到 OAuth tokens，请确保已完成 Anthropic 官方登录'));
       }
 
       console.log(chalk.gray(`配置文件: ${codexAuthFile}`));

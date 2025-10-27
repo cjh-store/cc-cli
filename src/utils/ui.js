@@ -186,8 +186,8 @@ async function showApiMenu(options = {}) {
 
   // 构建通知管理菜单项
   const notificationActionText = options.notificationStatus
-    ? "🔕 关闭通知 - 禁用系统通知"
-    : "🔔 开启通知 - 启用系统通知";
+    ? "🔕 关闭通知 - 完成和工具批准时禁用系统通知"
+    : "🔔 开启通知 - 完成和工具批准时启用系统通知";
   const notificationStatusText = options.notificationStatus
     ? chalk.green("[已开启]")
     : chalk.gray("[已关闭]");

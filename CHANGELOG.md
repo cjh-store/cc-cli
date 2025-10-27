@@ -1,3 +1,14 @@
+## [2.14.0](https://github.com/cjh-store/cc-cli/compare/v2.13.0...v2.14.0) (2025-10-27)
+
+### ✨ Features
+
+* **通知:** 新增智能通知功能 ([e3097dc](https://github.com/cjh-store/cc-cli/commit/e3097dc5d5a901b6856290130bd82c404542dff2))
+
+### 🐛 Bug Fixes
+
+* **deps:** 同步 package-lock.json 修复 CI 构建 ([72dca74](https://github.com/cjh-store/cc-cli/commit/72dca748541e356967ed786455b14d9927f24e19))
+* **hooks:** ExitPlanMode 需要用户手动确认 ([ab2fed5](https://github.com/cjh-store/cc-cli/commit/ab2fed5ed569f6bb5ee2e73bc90568f6843a37e1))
+
 ## [2.13.0](https://github.com/cjh-store/cc-cli/compare/v2.12.0...v2.13.0) (2025-10-24)
 
 ### ✨ Features

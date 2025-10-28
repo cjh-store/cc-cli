@@ -11,6 +11,7 @@
 ## 📸 界面预览
 
 ![配置切换界面](https://qm-cloud.oss-cn-chengdu.aliyuncs.com/test/otherType/github/image.png)
+![配置切换界面 - 新版](https://qm-cloud.oss-cn-chengdu.aliyuncs.com/test/otherType/PixPin_2025-10-28_08-34-10.png)
 
 ## 📑 目录
 

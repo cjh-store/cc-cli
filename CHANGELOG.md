@@ -1,3 +1,13 @@
+## [2.14.1](https://github.com/cjh-store/cc-cli/compare/v2.14.0...v2.14.1) (2025-10-29)
+
+### 💄 Styles
+
+* **项目:** 调整菜单项文本格式，去除多余空格 ([5c4b89f](https://github.com/cjh-store/cc-cli/commit/5c4b89f7b5a70291c5d81692c9462444a901b675))
+
+### 🔧 Chore
+
+* **release:** 添加 style 类型到语义化发版规则 ([911a404](https://github.com/cjh-store/cc-cli/commit/911a404ab00d93510591d76f7898f1e138e9b54d))
+
 ## [2.14.0](https://github.com/cjh-store/cc-cli/compare/v2.13.0...v2.14.0) (2025-10-27)
 
 ### ✨ Features

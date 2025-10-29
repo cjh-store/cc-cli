@@ -13,6 +13,7 @@
         {"type": "fix", "release": "patch"},
         {"type": "perf", "release": "patch"},
         {"type": "refactor", "release": "patch"},
+        {"type": "style", "release": "patch"},
         {"type": "chore", "release": "patch"},
         {"breaking": true, "release": "major"}
       ]
@@ -30,6 +31,7 @@
           {"type": "fix", "section": "🐛 Bug Fixes"},
           {"type": "perf", "section": "⚡ Performance"},
           {"type": "refactor", "section": "♻️ Refactor"},
+          {"type": "style", "section": "💄 Styles"},
           {"type": "chore", "section": "🔧 Chore"}
         ]
       }

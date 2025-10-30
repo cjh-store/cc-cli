@@ -217,12 +217,12 @@ async function showApiMenu(options = {}) {
       short: "添加配置",
     },
     {
-      name: "✏️ 编辑配置 - 修改现有配置",
+      name: "📝 编辑配置 - 修改现有配置",
       value: "edit",
       short: "编辑配置",
     },
     {
-      name: "🗑️ 删除配置 - 删除API配置",
+      name: "❌ 删除配置 - 删除API配置",
       value: "delete",
       short: "删除配置",
     },

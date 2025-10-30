@@ -1,3 +1,9 @@
+## [2.14.2](https://github.com/cjh-store/cc-cli/compare/v2.14.1...v2.14.2) (2025-10-30)
+
+### 💄 Styles
+
+* **ui:** 更新菜单项的emoji图标 ([07d2136](https://github.com/cjh-store/cc-cli/commit/07d21362ade9af9e97b068f1bee1a28432e912b9))
+
 ## [2.14.1](https://github.com/cjh-store/cc-cli/compare/v2.14.0...v2.14.1) (2025-10-29)
 
 ### 💄 Styles

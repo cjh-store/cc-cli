@@ -143,31 +143,6 @@ cc --help
 }
 ```
 
-## 🔄 工作原理
-
-### WebDAV 备份功能
-
-支持将配置文件备份到云端存储，确保配置安全：
-
-#### 支持的 WebDAV 服务
-
-- **坚果云** - `https://dav.jianguoyun.com/dav/`
-- **其他 WebDAV 服务** - 任何标准 WebDAV 协议服务
-
-#### 备份内容
-
-- **CC-CLI 配置** - 📁.cc-cli 下 api_config.json 等等
-- **Claude Code 配置** - 📄 settings.json 📄 CLAUDE.md 📁 agents/ 📁 commands/
-- **Codex 配置** - 📄 config.toml 📄 auth.json 📄 AGENTS.md
-
-#### 功能特性
-
-- 🔐 **安全认证** - 支持用户名密码认证
-- 📦 **选择性备份** - 可选择备份特定配置类别
-- 🕒 **自动清理** - 自动保留最新 5 个备份文件
-- 🔄 **完整恢复** - 支持选择备份文件和配置类别恢复
-- 📊 **状态监控** - 实时显示备份状态和云端连接情况
-
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=cjh-store/cc&type=Date)](https://star-history.com/#cjh-store/cc&Date)

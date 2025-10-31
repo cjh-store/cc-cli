@@ -142,31 +142,6 @@ The tool will automatically merge your selected API configuration with existing 
 }
 ```
 
-## 🔄 Working Principle
-
-### WebDAV Backup Feature
-
-Supports backing up configuration files to cloud storage to ensure configuration security:
-
-#### Supported WebDAV Services
-
-- **Nutstore** - `https://dav.jianguoyun.com/dav/`
-- **Other WebDAV Services** - Any standard WebDAV protocol service
-
-#### Backup Content
-
-- **CC-CLI Configuration** - 📁.cc-cli 下 api_config.json etc.
-- **Claude Code Configuration** - 📄 settings.json 📄 CLAUDE.md 📁 agents/ 📁 commands/
-- **Codex Configuration** - 📄 config.toml 📄 auth.json 📄 AGENTS.md
-
-#### Feature Characteristics
-
-- 🔐 **Secure Authentication** - Supports username and password authentication
-- 📦 **Selective Backup** - Can choose to backup specific configuration categories
-- 🕒 **Automatic Cleanup** - Automatically keeps the latest 5 backup files
-- 🔄 **Complete Recovery** - Supports selecting backup files and configuration categories for recovery
-- 📊 **Status Monitoring** - Real-time display of backup status and cloud connectivity
-
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=cjh-store/cc&type=Date)](https://star-history.com/#cjh-store/cc&Date)

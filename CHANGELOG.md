@@ -1,3 +1,9 @@
+## [2.15.0](https://github.com/cjh-store/cc-cli/compare/v2.14.2...v2.15.0) (2025-11-03)
+
+### ✨ Features
+
+* **config:** 支持 Vertex AI 配置并优化智能合并策略 ([d3e1bf6](https://github.com/cjh-store/cc-cli/commit/d3e1bf628b90817555c92629984782975b5ce93d))
+
 ## [2.14.2](https://github.com/cjh-store/cc-cli/compare/v2.14.1...v2.14.2) (2025-10-30)
 
 ### 💄 Styles

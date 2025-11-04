@@ -92,7 +92,7 @@ class BackupManager {
         checked: true, // 默认选中
       },
       {
-        name: "🎯 Claude Code配置 (settings.json, CLAUDE.md, agents/, commands/)",
+        name: "🎯 Claude Code配置 (settings.json, CLAUDE.md, agents/, commands/, skills/)",
         value: "claudeCode",
         short: "Claude Code配置",
       },

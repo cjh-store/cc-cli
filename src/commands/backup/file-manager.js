@@ -40,7 +40,8 @@ class FileManager {
         },
         directories: {
           'agents': path.join(this.homeDir, '.claude', 'agents'),
-          'commands': path.join(this.homeDir, '.claude', 'commands')
+          'commands': path.join(this.homeDir, '.claude', 'commands'),
+          'skills': path.join(this.homeDir, '.claude', 'skills')
         }
       },
 

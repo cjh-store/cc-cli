@@ -1,3 +1,9 @@
+## [2.16.0](https://github.com/cjh-store/cc-cli/compare/v2.15.0...v2.16.0) (2025-11-04)
+
+### ✨ Features
+
+* **backup:** 支持备份 Claude Code skills 配置目录 ([6103d70](https://github.com/cjh-store/cc-cli/commit/6103d7081db0158a8ce0ce110b81eed42866f4bd))
+
 ## [2.15.0](https://github.com/cjh-store/cc-cli/compare/v2.14.2...v2.15.0) (2025-11-03)
 
 ### ✨ Features

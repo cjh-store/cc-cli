@@ -13,6 +13,7 @@ class ConfigManager {
     this.claudeDir = path.join(this.homeDir, ".claude");
     this.ccCliDir = path.join(this.homeDir, ".cc-cli");
     this.settingsPath = path.join(this.claudeDir, "settings.json");
+    this.claudeConfigPath = path.join(this.claudeDir, "config.json");
 
     // 查找配置文件路径，优先使用 .cc-cli，兼容 .claude
     this.configPath = this.findConfigPath();
@@ -191,6 +192,23 @@ class ConfigManager {
   }
 
   /**
+   * 读取config.json配置
+   * @returns {Object} config配置对象
+   */
+  async getClaudeConfigJson() {
+    try {
+      if (!(await fs.pathExists(this.claudeConfigPath))) {
+        return {};
+      }
+      const configContent = await fs.readFile(this.claudeConfigPath, "utf8");
+      return JSON.parse(configContent);
+    } catch (error) {
+      console.warn(chalk.yellow("⚠️  读取~/.claude/config.json失败:"), error.message);
+      return {};
+    }
+  }
+
+  /**
    * 读取settings.json配置
    * @returns {Object} settings配置对象
    */
@@ -204,6 +222,23 @@ class ConfigManager {
     } catch (error) {
       console.warn(chalk.yellow("⚠️  读取settings.json失败:"), error.message);
       return {};
+    }
+  }
+
+  /**
+   * 保存config.json配置
+   * @param {Object} config config配置对象
+   */
+  async saveClaudeConfigJson(config) {
+    try {
+      await this.ensureConfigDir();
+      await fs.writeFile(
+        this.claudeConfigPath,
+        JSON.stringify(config, null, 2),
+        "utf8"
+      );
+    } catch (error) {
+      throw new Error(`保存~/.claude/config.json失败: ${error.message}`);
     }
   }
 
@@ -279,8 +314,17 @@ class ConfigManager {
 
       await this.saveCurrentConfig(config);
 
-      // 读取当前settings.json
+      // 读取当前settings.json 和 config.json
       const currentSettings = await this.getSettings();
+      const currentConfigJson = await this.getClaudeConfigJson();
+
+      // 清空现有的config.json的primaryApiKey配置
+      if (currentConfigJson.primaryApiKey) {
+        delete currentConfigJson.primaryApiKey;
+      }
+
+      // 为config.json添加站点名称的配置解决强制登陆问题：https://linux.do/t/topic/999263/13
+      currentConfigJson.primaryApiKey = config.siteName;
 
       // 需要删除重置的配置项
       if (currentSettings.env) {
@@ -313,8 +357,9 @@ class ConfigManager {
       // 深度合并配置
       const mergedSettings = this.deepMerge(currentSettings, configToMerge);
 
-      // 保存合并后的settings.json
+      // 保存合并后的settings.json 和 config.json
       await this.saveSettings(mergedSettings);
+      await this.saveClaudeConfigJson(currentConfigJson);
 
       return config;
     } catch (error) {

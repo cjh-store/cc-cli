@@ -1,3 +1,9 @@
+## [2.17.0](https://github.com/cjh-store/cc-cli/compare/v2.16.0...v2.17.0) (2025-12-25)
+
+### ✨ Features
+
+* **config:** 修复vscode claude code 插件强制登录的问题 ([abb401e](https://github.com/cjh-store/cc-cli/commit/abb401e42cad82f2ec3d43513fd07d89b317b72a))
+
 ## [2.16.0](https://github.com/cjh-store/cc-cli/compare/v2.15.0...v2.16.0) (2025-11-04)
 
 ### ✨ Features
